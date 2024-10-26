@@ -1,9 +1,10 @@
-# hackreation-10-26-24
+# Secret Button Team
 
-## Steps To Participate
-1) Fork this Repository
-2) Create a PR that contains:
-  * Team Name
-  * Team Participants
-  * Project Name
-  * Project Description
+## Team Details
+Participants
+ *Alexa Miller
+ *Matt Rohr
+ *Chris Hemmerly
+
+Project Description 
+We want to create a prototype for a piece of public art that will have active components which are controlled by a button at a distance
