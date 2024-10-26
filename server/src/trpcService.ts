@@ -1,4 +1,4 @@
-import { Bookmark, HelloWorld, IsoDateTime, UpdateBookmark, updateBookmarkSchema } from "@shared/types";
+import { Bookmark, CreateBookmark, createBookmarkSchema, HelloWorld, IsoDateTime, UpdateBookmark, updateBookmarkSchema } from "@shared/types";
 import { initTRPC } from "@trpc/server";
 import { z } from "zod";
 import { db } from "@server/dbClient";
@@ -14,11 +14,6 @@ function getHelloWorld() {
   return "Hello World" as HelloWorld;
 }
 
-const createBookmarkSchema = z.object({
-  url: z.string().url(),
-});
-
-type CreateBookmark = z.infer<typeof createBookmarkSchema>;
 async function createBookmark(request: CreateBookmark): Promise<number> {
   const title = await parseUrlContent(request.url);
 

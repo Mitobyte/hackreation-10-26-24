@@ -12,6 +12,12 @@ export type Bookmark = {
   createdAt: IsoDateTime; 
 }
 
+export const createBookmarkSchema = z.object({
+  url: z.string().url(),
+});
+
+export type CreateBookmark = z.infer<typeof createBookmarkSchema>;
+
 export const updateBookmarkSchema = z.object({
   id: z.number(),
   title: z.string(),
