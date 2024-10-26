@@ -69,18 +69,38 @@ async function loadBookmark(id: number): Promise<Bookmark> {
       id: true,
       url: true,
       title: true,
-      notes: true
+      notes: true,
     },
   });
 
   if (!result) {
-    throw new Error('bookmark not found');
+    throw new Error("bookmark not found");
   }
 
   return {
     ...result,
     notes: result.notes || undefined,
   };
+}
+
+async function loadBookmarks(): Promise<Bookmark[]> {
+  const result = await db.bookmark.findMany({
+    select: {
+      id: true,
+      url: true,
+      title: true,
+      notes: true,
+    },
+  });
+
+  const output: Bookmark[] = result.map((x) => ({
+    id: x.id,
+    url: x.url,
+    title: x.title,
+    notes: x.notes || undefined,
+  }));
+
+  return output;
 }
 
 export const appRouter = t.router({
@@ -93,5 +113,6 @@ export const appRouter = t.router({
   }),
   getBookmark: t.procedure.input(z.coerce.number()).query(async (opts) => {
     return await loadBookmark(opts.input);
-  })
+  }),
+  getBookmarks: t.procedure.query(loadBookmarks),
 });
