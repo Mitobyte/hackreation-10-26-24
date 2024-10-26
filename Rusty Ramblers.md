@@ -1,0 +1,4 @@
+- Team Name: Rusty Ramblers
+- Team Participants: Katie Redford, Zak Sharp, Heather Greene
+- Project Name: 10,000 Pixels but Rust
+- Project Description: We're going to attempt to re-create the 10,000 pixels backend with Rust
