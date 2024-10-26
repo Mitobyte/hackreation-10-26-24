@@ -8,6 +8,16 @@
 
 ## Instructions
 
+To run locally, this requires a postgres server setup and node v23.0.0.
+- Install dependencies by running `npm install` in the project root.
+- Navigate to the `server/` directory.
+- Copy the `.env.example` to `.env` and fill in missing fields.
+- Update the database connection string to your postgres server and 
+- Next run `npx prisma generate` to regenerate prisma db client code.
+- Then `npx prisma db push` to generate the tables in the target postgres db.
+- Now navigate back to the project root and `npm run dev` will spin up the app in development mode.
+- Go to localhost:3007 in your browser to see the app. By default in dev mode the client will run on port 3007 and the server on port 3006.
+
 
 ## Bookmarklet
 
