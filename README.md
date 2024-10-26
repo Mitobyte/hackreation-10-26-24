@@ -1,9 +1,5 @@
 # hackreation-10-26-24
 
-## Steps To Participate
-1) Fork this Repository
-2) Create a PR that contains:
-  * Team Name
-  * Team Participants
-  * Project Name
-  * Project Description
+geoFont Stage I
+(a web app to view Commodore 64 GEOS fonts)
+Glenn, Jeff
