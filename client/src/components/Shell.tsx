@@ -20,6 +20,14 @@ export function Shell() {
             >
               Home
             </Button>
+            <Button
+              size="compact-sm"
+              variant={location === routes.root ? "outline" : "subtle"}
+              href={routes.bookmarkList}
+              component={Link}
+            >
+              Bookmarks
+            </Button>
           </Group>
         </Group>
       </AppShell.Header>

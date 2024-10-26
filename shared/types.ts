@@ -1,3 +1,5 @@
+import z from "zod";
+
 export type HelloWorld = string & { brand: "HelloWorld" };
 
 export type Bookmark = {
@@ -7,3 +9,10 @@ export type Bookmark = {
   notes?: string;
 }
 
+export const updateBookmarkSchema = z.object({
+  id: z.number(),
+  title: z.string(),
+  notes: z.string().optional(),
+});
+
+export type UpdateBookmark = z.infer<typeof updateBookmarkSchema>;

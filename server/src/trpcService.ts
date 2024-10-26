@@ -1,4 +1,4 @@
-import { Bookmark, HelloWorld } from "@shared/types";
+import { Bookmark, HelloWorld, UpdateBookmark, updateBookmarkSchema } from "@shared/types";
 import { initTRPC } from "@trpc/server";
 import { z } from "zod";
 import { db } from "@server/dbClient";
@@ -35,15 +35,7 @@ async function createBookmark(request: CreateBookmark): Promise<number> {
   return result.id;
 }
 
-const updateBookmarkSchema = z.object({
-  id: z.number(),
-  title: z.string(),
-  notes: z.string().optional(),
-});
-
-type UpdateBookmark = z.infer<typeof updateBookmarkSchema>;
-
-async function updateBookmark(request: UpdateBookmark): Promise<Bookmark> {
+async function updateBookmark(request: UpdateBookmark): Promise<number> {
   const result = await db.bookmark.update({
     where: {
       id: request.id,
@@ -52,12 +44,12 @@ async function updateBookmark(request: UpdateBookmark): Promise<Bookmark> {
       title: request.title,
       notes: request.notes || null,
     },
+    select: {
+      id: true
+    }
   });
 
-  return {
-    ...result,
-    notes: result.notes || undefined,
-  };
+  return result.id;
 }
 
 async function loadBookmark(id: number): Promise<Bookmark> {
