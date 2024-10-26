@@ -1,4 +1,6 @@
 export const routes = {
   root: "/",
-  createBookmark: "/bookmark",
+  bookmarkCreate: "/bookmark",
+  bookmarkDetails: "/bookmark/:id",
+  toBookmarkDetails: (id: number) => `/bookmark/${id}`,
 };

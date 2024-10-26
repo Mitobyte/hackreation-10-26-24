@@ -60,6 +60,29 @@ async function updateBookmark(request: UpdateBookmark): Promise<Bookmark> {
   };
 }
 
+async function loadBookmark(id: number): Promise<Bookmark> {
+  const result = await db.bookmark.findUnique({
+    where: {
+      id: id,
+    },
+    select: {
+      id: true,
+      url: true,
+      title: true,
+      notes: true
+    },
+  });
+
+  if (!result) {
+    throw new Error('bookmark not found');
+  }
+
+  return {
+    ...result,
+    notes: result.notes || undefined,
+  };
+}
+
 export const appRouter = t.router({
   getHelloWorld: t.procedure.query(getHelloWorld),
   createBookmark: t.procedure.input(createBookmarkSchema).mutation(async (opts) => {
@@ -68,4 +91,7 @@ export const appRouter = t.router({
   updateBookmark: t.procedure.input(updateBookmarkSchema).mutation(async (opts) => {
     return await updateBookmark(opts.input);
   }),
+  getBookmark: t.procedure.input(z.coerce.number()).query(async (opts) => {
+    return await loadBookmark(opts.input);
+  })
 });

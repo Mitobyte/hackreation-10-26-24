@@ -3,17 +3,13 @@ import { logger } from "@server/utils/logger";
 
 export async function parseUrlContent(url: string): Promise<string> {
   try {
-    logger.info("fetching");
+    logger.info("Parsing url content");
+
     const response = await fetch(url, {
       method: "GET",
-      mode: "no-cors",
     });
 
-    logger.info("respose", response);
-
     const text = await response.text();
-
-    logger.info(text);
 
     const doc = cheerio.load(text);
 
