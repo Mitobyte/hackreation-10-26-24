@@ -1,0 +1,37 @@
+{
+  "name": "nodeReactBoilerplate-client",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "rm -rf ./dist && tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --pretty --noEmit"
+  },
+  "dependencies": {
+    "@mantine/charts": "^7.11.1",
+    "@mantine/core": "^7.11.1",
+    "@mantine/dates": "^7.11.1",
+    "@mantine/hooks": "^7.11.1",
+    "@tabler/icons-react": "^3.6.0",
+    "@tanstack/react-query": "^5.34.2",
+    "@trpc/client": "^11.0.0-next-beta.303",
+    "@trpc/react-query": "^11.0.0-next-beta.303",
+    "@trpc/server": "^11.0.0-next-beta.303",
+    "dayjs": "^1.11.11",
+    "jotai": "^2.8.3",
+    "mantine-react-table": "^2.0.0-beta.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "recharts": "^2.12.7",
+    "wouter": "^3.3.5"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.3",
+    "postcss-preset-mantine": "^1.13.0",
+    "vite": "^5.1.4"
+  }
+}
