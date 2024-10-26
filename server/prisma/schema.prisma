@@ -8,5 +8,9 @@ datasource db {
 }
 
 model Bookmark {
-id Int @id @default(autoincrement())
+  id Int @id @default(autoincrement())
+  url String
+  title String
+  notes String?
 }
+
