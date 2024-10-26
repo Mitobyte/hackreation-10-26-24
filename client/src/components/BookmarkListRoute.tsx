@@ -1,7 +1,9 @@
 import { routes } from "@client/constants";
 import { trpc } from "@client/utils/trpc";
+import { formatIsoDateTime } from "@client/utils/utils";
 import { Container, Space, Title } from "@mantine/core";
 import { Bookmark } from "@shared/types";
+import dayjs from "dayjs";
 import { MRT_ColumnDef, MantineReactTable, useMantineReactTable } from "mantine-react-table";
 import { useMemo } from "react";
 import { useLocation } from "wouter";
@@ -13,6 +15,23 @@ export function BookmarkListRoute() {
 
   const columns = useMemo<MRT_ColumnDef<Bookmark>[]>(
     () => [
+      {
+        id: "createdAt",
+        header: "Bookmarked At",
+        accessorKey: "createdAt",
+        accessorFn: (row) => formatIsoDateTime(row.createdAt),
+        sortingFn: (a, b) => {
+          const dateA = dayjs(a.original.createdAt);
+          const dateB = dayjs(b.original.createdAt);
+          if (dateA > dateB) {
+            return 1;
+          }
+          if (dateA < dateB) {
+            return -1;
+          }
+          return 0;
+        },
+      },
       {
         header: "Title",
         accessorKey: "title",
@@ -35,7 +54,7 @@ export function BookmarkListRoute() {
     initialState: {
       density: "xs",
       pagination: { pageSize: 100, pageIndex: 0 },
-      sorting: [{ id: "name", desc: true }],
+      sorting: [{ id: "createdAt", desc: true }],
     },
     mantineTableBodyRowProps: ({ row }) => ({
       onClick: () => {

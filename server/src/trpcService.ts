@@ -1,4 +1,4 @@
-import { Bookmark, HelloWorld, UpdateBookmark, updateBookmarkSchema } from "@shared/types";
+import { Bookmark, HelloWorld, IsoDateTime, UpdateBookmark, updateBookmarkSchema } from "@shared/types";
 import { initTRPC } from "@trpc/server";
 import { z } from "zod";
 import { db } from "@server/dbClient";
@@ -62,6 +62,7 @@ async function loadBookmark(id: number): Promise<Bookmark> {
       url: true,
       title: true,
       notes: true,
+      createdAt: true
     },
   });
 
@@ -72,6 +73,7 @@ async function loadBookmark(id: number): Promise<Bookmark> {
   return {
     ...result,
     notes: result.notes || undefined,
+    createdAt: result.createdAt.toISOString() as IsoDateTime
   };
 }
 
@@ -82,6 +84,7 @@ async function loadBookmarks(): Promise<Bookmark[]> {
       url: true,
       title: true,
       notes: true,
+      createdAt: true
     },
   });
 
@@ -90,6 +93,7 @@ async function loadBookmarks(): Promise<Bookmark[]> {
     url: x.url,
     title: x.title,
     notes: x.notes || undefined,
+    createdAt: x.createdAt.toISOString() as IsoDateTime
   }));
 
   return output;

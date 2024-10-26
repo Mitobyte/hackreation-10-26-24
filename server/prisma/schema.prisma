@@ -12,5 +12,8 @@ model Bookmark {
   url String
   title String
   notes String?
+
+  modifiedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
 }
 
