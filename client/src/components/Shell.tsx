@@ -10,7 +10,7 @@ export function Shell() {
     <AppShell padding="md" header={{ height: 50 }}>
       <AppShell.Header>
         <Group h="100%" p="xs" justify="space-between" style={{ flex: 1 }}>
-          <Text>ReactNodeBoilerplate</Text>
+          <Text>Bookmarker</Text>
           <Group>
             <Button
               size="compact-sm"
